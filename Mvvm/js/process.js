@@ -16,7 +16,7 @@ Ickt('Process', 'Component', {
         //总时长
         time: 60 * 1000 * 3
     },
-    //样式文件
+    //样式文件 
     style: '../css/style.css',
     //构造函数，用于初始化进度条信息
     initialize: function() {
