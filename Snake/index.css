@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+/*棋盘居中*/
+
+.game {
+    margin: 50px auto;
+    border: lpx solid #ccc;
+}
+
+
+/*每行不能溢出*/
+
+.row {
+    overflow: hidden
+    /*列与列之间相邻，通过border定义边界*/
+}
+
+.col {
+    float: left;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+}
+
+
+/*计分样式：在地图上显示分数*/
+
+.score {
+    position: fixed;
+    top: 10px;
+    left: 508;
+    margin-left: -100px;
+    width: 200px;
+    text-align: center;
+    font-size: 30px;
+}
