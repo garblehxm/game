@@ -1,0 +1,44 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,width=device-width" />
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <title>连连看游戏</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="process">
+        </div>
+        <div class="list" id="list"></div>
+    </div>
+    <template id="tpl_ui">
+        <ul>
+        <li [repeat]="item, index in $list" i-style="{
+        left: item.col + 'px',
+        top: item.row + 'px',
+        borderColor: item.color,
+        display: item.display}">
+        <img :src="'img/' + item.num + '.png'" :alt="index" (click)=" chooseImage(item.num, index, $event)" /></li>
+        </ul>
+    </template>
+    <template id="tmp_process">
+        <div i-style="{
+            width: $value
+            }"></div>
+    </template>
+    <script type="text/javascript" src="../lib/ickt.js"></script>
+    <script type="text/javascript" src="../lib/class/component.js"></script>
+    <script type="text/javascript" src="../lib/modules/game.js"></script>
+    <script type="text/javascript" src="js/player.js"></script>
+    <script type="text/javascript" src="js/map.js"></script>
+    <script type="text/javascript" src="js/process.js"></script>
+    <script type="text/javascript" src="js/ui.js"></script>
+    <script type="text/javascript" src="js/services/links.js"></script>
+    <script type="text/javascript">
+        Ickt()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: purple;
+}
+
+.container {
+    margin: 30px auto;
+    position: relative;
+}
+
+.container div {
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+}
+
+.container,
+.container div {
+    width: 513px;
+    transition-property: transform;
+    height: 513px;
+    transition-duration: 2s;
+}
+
+.container .table {
+    /* background-image: url('../img/table.png'); */
+    transition-timing-function: ease-out;
+}
+
+.container .point {
+    /* background-image: url('../img/point.png'); */
+    transition-timing-function: ease-in-out;
+}
+
+
+/*移动端不用鼠标，指针不用设置成手形*/
+
+.container .arrow {
+    /* background-image: url('../img/arrow.png'); */
+    width: 134px;
+    height: 163px;
+    tор: 162рх;
+    left: 187px;
+}

@@ -1,0 +1,65 @@
+    body {
+        background: #fae685 url(../img/bg.jpg) center -15px no-repeat
+    }
+    
+    #app {
+        width: 700px!important;
+        position: relative;
+        left: 2px;
+        margin: 70px auto;
+    }
+    
+    .list {
+        width: 658px;
+        margin: 0 auto;
+    }
+    
+    .list ul {
+        padding: 0;
+        position: relative;
+        height: 324px;
+        width: 648px;
+        border: 5px solid red;
+    }
+    
+    .list ul li {
+        width: 50px;
+        border: 2px solid transparent;
+        height: 50px;
+        list-style: none;
+        cursor: pointer;
+        position: absolute;
+    }
+    
+    .list ul li:hover,
+    .list ul li.hover {
+        border: 2px solid red;
+    }
+    
+    .list ul li.hide {
+        border: 2px solid transparent;
+    }
+    
+    .list ul li img {
+        height: 50px;
+        width: 50px;
+    }
+    /*进度条容器*/
+    
+    .process {
+        width: 648px;
+        height: 5px;
+        border: 1px solid gold;
+        margin: 45px auto 15px;
+        border-radius: 5px;
+        background: orange;
+    }
+    /*进度*/
+    
+    .process div {
+        width: 408px;
+        float: right;
+        background: green;
+        height: 5px;
+        border-radius: 5px;
+    }

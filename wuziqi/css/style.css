@@ -1,0 +1,109 @@
+                                                                                                                                                                                        /*棋盘居中*/
+                                                                                                                                                                                        
+                                                                                                                                                                                        .game {
+                                                                                                                                                                                            margin: 50px auto;
+                                                                                                                                                                                            border: lpx solid #ccc;
+                                                                                                                                                                                            position: relative;
+                                                                                                                                                                                        }
+                                                                                                                                                                                        /*每行不能溢出*/
+                                                                                                                                                                                        
+                                                                                                                                                                                        .row {
+                                                                                                                                                                                            overflow: hidden
+                                                                                                                                                                                        }
+                                                                                                                                                                                        /*列与列相邻，通过border定义边界*/
+                                                                                                                                                                                        
+                                                                                                                                                                                        .col {
+                                                                                                                                                                                            float: left;
+                                                                                                                                                                                            width: 13px;
+                                                                                                                                                                                            height: 13px;
+                                                                                                                                                                                            border: lpx solid #ddd;
+                                                                                                                                                                                        }
+                                                                                                                                                                                        
+                                                                                                                                                                                        .item {
+                                                                                                                                                                                            width: 10px;
+                                                                                                                                                                                            height: 10px;
+                                                                                                                                                                                            border-radius: 50%;
+                                                                                                                                                                                            position: absolute;
+                                                                                                                                                                                        }
+                                                                                                                                                                                        
+                                                                                                                                                                                        .item-type-1 {
+                                                                                                                                                                                            border: lpx solid #fff;
+                                                                                                                                                                                            background: #000;
+                                                                                                                                                                                        }
+                                                                                                                                                                                        
+                                                                                                                                                                                        .item-type-2 {
+                                                                                                                                                                                            border: lpx solid #000;
+                                                                                                                                                                                            background: #fff;
+                                                                                                                                                                                        }
+                                                                                                                                                                                        /*玩家样式*/
+                                                                                                                                                                                        
+                                                                                                                                                                                        .player {
+                                                                                                                                                                                            position: fixed;
+                                                                                                                                                                                            top: 5px;
+                                                                                                                                                                                            left: 50%;
+                                                                                                                                                                                            margin-left: -150px;
+                                                                                                                                                                                            width: 300px;
+                                                                                                                                                                                            text-align: center;
+                                                                                                                                                                                            font-size: 16px;
+                                                                                                                                                                                            line-height: 50px;
+                                                                                                                                                                                            color: orange;
+                                                                                                                                                                                        }
+                                                                                                                                                                                        
+                                                                                                                                                                                        .player span {
+                                                                                                                                                                                            color: red;
+                                                                                                                                                                                            font-size: 20px;
+                                                                                                                                                                                            margin: 0 10px;
+                                                                                                                                                                                        }
+                                                                                                                                                                                        
+                                                                                                                                                                                        .player i {
+                                                                                                                                                                                            width: 10px;
+                                                                                                                                                                                            height: 10px;
+                                                                                                                                                                                            border-radius: 508;
+                                                                                                                                                                                            display: inline-block;
+                                                                                                                                                                                        }
+                                                                                                                                                                                        
+                                                                                                                                                                                        .player i.white {
+                                                                                                                                                                                            background: #fff;
+                                                                                                                                                                                            border: lpx solid #000;
+                                                                                                                                                                                        }
+                                                                                                                                                                                        
+                                                                                                                                                                                        .player i.black {
+                                                                                                                                                                                            background: #000;
+                                                                                                                                                                                            border: lpx solid #fff;
+                                                                                                                                                                                        }
+                                                                                                                                                                                        
+                                                                                                                                                                                        .watcher {
+                                                                                                                                                                                            position: fixed;
+                                                                                                                                                                                            top: 410px;
+                                                                                                                                                                                            left: 508;
+                                                                                                                                                                                            margin-left: -130px;
+                                                                                                                                                                                            width: 260px;
+                                                                                                                                                                                            font-size: 16px;
+                                                                                                                                                                                            color: green;
+                                                                                                                                                                                            text-align: left;
+                                                                                                                                                                                        }
+                                                                                                                                                                                        
+                                                                                                                                                                                        .btn {
+                                                                                                                                                                                            font-size: 16px;
+                                                                                                                                                                                            height: 40px;
+                                                                                                                                                                                            line-height: 40px;
+                                                                                                                                                                                            text-align: center;
+                                                                                                                                                                                            border-radius: 4px;
+                                                                                                                                                                                            margin: 20px auto;
+                                                                                                                                                                                            width: 808;
+                                                                                                                                                                                            color: #fff;
+                                                                                                                                                                                            border: lpx solid transparent;
+                                                                                                                                                                                        }
+                                                                                                                                                                                        
+                                                                                                                                                                                        .game-start {
+                                                                                                                                                                                            background-color: #d9534f;
+                                                                                                                                                                                            border-color: #d43f3a;
+                                                                                                                                                                                            display: none;
+                                                                                                                                                                                        }
+                                                                                                                                                                                        
+                                                                                                                                                                                        .game-start {
+                                                                                                                                                                                            position: fixed;
+                                                                                                                                                                                            top: 340px;
+                                                                                                                                                                                            left: 50%;
+                                                                                                                                                                                            margin-left: -40%;
+                                                                                                                                                                                        }
