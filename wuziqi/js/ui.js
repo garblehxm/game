@@ -1,15 +1,15 @@
-Ickt("UI", {
+IView("UI", {
     //构造函数
     initialize: function() {
         //单元格宽度
-        this.cell = Ickt('cell');
+        this.cell = IView('cell');
         //获取游戏渲染容器
-        this.container = document.querySelector(Ickt('container'));
+        this.container = document.querySelector(IView('container'));
         //添加样式类
         this.container.className = 'game';
-        this.container.style.height = (Ickt('line') - 1) * this.cel1 + 'px';
+        this.container.style.height = (IView('line') - 1) * this.cel1 + 'px';
         //设置容器的宽与高
-        this.container.style.width = (Ickt('line') - 1) * this.cell + 'px';
+        this.container.style.width = (IView('line') - 1) * this.cell + 'px';
         //绘制用户
         this.initUser()
     },

@@ -1,5 +1,5 @@
 //定义玩家模块
-Ickt('Player', {
+IView('Player', {
     //模块安装前，定义模块静态变量
     beforeInstall: function() {
         //定义奖品概率比

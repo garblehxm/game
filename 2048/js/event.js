@@ -1,5 +1,5 @@
 // 事件模块
-Ickt('Event', {
+IView('Event', {
     //构造函数
     initialize: function() {
         //绑定事件

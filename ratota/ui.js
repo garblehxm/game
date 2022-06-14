@@ -1,4 +1,4 @@
-Ickt("UI", {
+IView("UI", {
     //订阅消息
     message: {
         //订阅展示奖品的消息

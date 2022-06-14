@@ -1,4 +1,4 @@
-Ickt("socket", {
+IView("socket", {
     //注册消息
     message: {
         'socket.player.init': 'playerInit',
@@ -79,7 +79,7 @@ Ickt("socket", {
     //构造函数
     initialize: function() {
         //获取玩家昵称
-        this.username = Ickt('username');
+        this.username = IView('username');
         this.socket = io();
         //获取socket io对象
         //注册事件
@@ -100,7 +100,7 @@ Ickt("socket", {
         //如果用户是左侧（黑方）玩家
         if (res === 'playerl') {
             //设置信息
-            Ickt({
+            IView({
                     player: 1,
                 })
                 //存储信息
@@ -108,7 +108,7 @@ Ickt("socket", {
             //如果用户是右侧（白方）玩家
         } else if (res === 'player2') {
             //设置信息
-            Ickt({
+            IView({
                     player: 2,
                 })
                 //存储信息
@@ -157,7 +157,7 @@ Ickt("socket", {
     //监听游戏开始的消息
     onGameStart: function() {
         //存储游戏开始的配置
-        Ickt({ gameStart: true })
+        IView({ gameStart: true })
         this.trigger('ui.hideGameStartBtn')
     }
 })

@@ -1,4 +1,4 @@
-Ickt('UI', {
+IView('UI', {
     //全局配置
     globals: {
         //默认行与列的方格数
@@ -22,13 +22,13 @@ Ickt('UI', {
     //构造函数，注入$element服务
     initialize: function($element) {
         //获取容器元素
-        this.container = document.querySelector(Ickt('container'));
+        this.container = document.querySelector(IView('container'));
         //设置背景图片地址
-        this.url = 'url(' + Ickt('url') + ')'
+        this.url = 'url(' + IView('url') + ')'
             //获取容器宽度
-        this.width = Ickt('width');
+        this.width = IView('width');
         //获取行与列的方格数
-        this.size = Ickt('size');
+        this.size = IView('size');
         //计算每个方格的大小
         this.cell = this.width / this.size;
         //方格DOM存储容器

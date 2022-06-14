@@ -1,4 +1,4 @@
-Ickt('UI', {
+IView('UI', {
     //全局配置信息
     globals: {
         //默认容器元素
@@ -78,9 +78,9 @@ Ickt('UI', {
     //构造函数，用于注入selement服务
     initialize: function($element) {
         //获取玩家汽车所在位置的纵坐标
-        this.playerY = Ickt('playerY');
+        this.playerY = IView('playerY');
         //获取容器元素
-        this.container = document.querySelector(Ickt('container'));
+        this.container = document.querySelector(IView('container'));
         //3条车道所在位置的横坐标
         this.lane = [36, 94, 152];
         this.carDOMs = [];
@@ -100,7 +100,7 @@ Ickt('UI', {
     //页面加载完成
     ready: function() {
         //获取障碍汽车的数量
-        this.carNum = Ickt('carNum')
+        this.carNum = IView('carNum')
             //初始化视图
             // this.initView();
     },

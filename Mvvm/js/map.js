@@ -1,7 +1,6 @@
-Ickt('Map', {
+IView('Map', {
     //注册消息
     message: {
-        'map.gameStart': 'gameStart',
         'map.change': 'changeItem',
         //选中而隐藏图片
         'map.hide': 'hideItem',
@@ -18,16 +17,16 @@ Ickt('Map', {
     //构造函数，注入〈连连看〉的服务
     initialize: function($links) {
         //不同图片的数量
-        this.level = 18; //行数
-        this.repeat = 4; //图片总数
+        this.level = 18;
+        //行数
+        this.repeat = 4;
+        //图片总数
         this.total = 72;
         this.currentNum = this.total = this.level * this.repeat;
         //一行排列的图片数
-        this.oneLineNum = 12; //行数
+        this.oneLineNum = 12;
+        //行数
         this.lines = this.total / this.oneLineNum;
-    },
-    ready: function() {
-        // this.gameStart()
     },
     //重置地图
     resetMap: function() {

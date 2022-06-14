@@ -1,4 +1,4 @@
-Ickt('Map', {
+IView('Map', {
     message: {
         //检测该位置是否可以下棋子
         'map.item.isValid': 'checkItemIsValid',
@@ -10,8 +10,8 @@ Ickt('Map', {
 
     //构造函数，用于注入检测服务
     initialize: function($gobang) {
-        this.row = Ickt("line")
-        this.col = Ickt("line")
+        this.row = IView("line")
+        this.col = IView("line")
         this.createMap();
     },
 
@@ -44,8 +44,8 @@ Ickt('Map', {
     checkWinGame: function() {
         //如果是棋手，并且横向五子相连或者纵向五子相连或者在斜45°（或者135°方向上
         //则在游戏中获胜
-        return Ickt('player') > 0 && (this.$gobang.checkRow(this.map) || this.$gobang.checkCol(this.map) ||
-            this.$gobang.check45(this.map, Ickt('line')) || this.$gobang.checkl35(this.map, Ickt('line')))
+        return IView('player') > 0 && (this.$gobang.checkRow(this.map) || this.$gobang.checkCol(this.map) ||
+            this.$gobang.check45(this.map, IView('line')) || this.$gobang.checkl35(this.map, IView('line')))
     },
 
     createMap: function() {

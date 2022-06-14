@@ -1,6 +1,6 @@
-const Ickt = require("../ickt");
+const IView = require("../IView");
 
-Ickt('Event', {
+IView('Event', {
     //全局配置
     globals: {
         //缩放比默认是1
@@ -57,7 +57,7 @@ Ickt('Event', {
             //遍历全局消息
         this.EVENT_NESSAGE.forEach(function(key) {
             //注册全局消息（生命周期）
-            Ickt.registGlobalMessage(key)
+            IView.registGlobalMessage(key)
         }.bind(this))
     },
     initialize: function() {
@@ -73,7 +73,7 @@ Ickt('Event', {
     // 确定容器元素
     ensnreDOM: function() {
         //获取事件委托元凄
-        this.touchDOM = document.querySelector(Ickt('touchDOM'));
+        this.touchDOM = document.querySelector(IView('touchDOM'));
     },
     // 绑定事件
     bindEvent: function() {
@@ -105,7 +105,7 @@ Ickt('Event', {
     //模块创建完
     ready: function() {
         //存储缩放比
-        this.scale = Ickt('scale');
+        this.scale = IView('scale');
         //确定容器元素
         this.ensureDOM();
         //
@@ -114,7 +114,7 @@ Ickt('Event', {
     },
     ensureDOM: function() {
         //获取事件委托元素
-        this.touchDOM = document.querySelector(Ickt('touchDOM'));
+        this.touchDOM = document.querySelector(IView('touchDOM'));
     },
     /* 手指触摸手机屏幕的回调函数
     事件对象 *
@@ -136,7 +136,7 @@ Ickt('Event', {
         this.longTapTimeout = setTimeout(this.longTap.bind(this), this.consts('LONG_TAP_DELAY'))
         this.touch.y1 = e.touches[0].pageY;
         //启动长按计时器，发布长按事件
-        this.trigger('ickt.event.touchStart', this.getTouchEvent()) //发布手指触摸手机屏墓的事件
+        this.trigger('IView.event.touchStart', this.getTouchEvent()) //发布手指触摸手机屏墓的事件
     },
     /***
      *手指在屏幕上移动回调函数事件对象+ @e
@@ -156,7 +156,7 @@ Ickt('Event', {
                 e.preventDefault()
             }
             //发布手指移动的消息
-            this.trigger('ickt.event.touchMove', this.getTouchEvent(true))
+            this.trigger('IView.event.touchMove', this.getTouchEvent(true))
         }
     },
 
@@ -171,7 +171,7 @@ Ickt('Event', {
             //发布轻拍事件
             this.tap();
             //发布手指离开手机屏幕的事件
-            this.trigger('ickt.event.touchEnd', this.getTouchEvent(true))
+            this.trigger('IView.event.touchEnd', this.getTouchEvent(true))
         }
     },
     //获取手指移动的距离
@@ -210,9 +210,9 @@ Ickt('Event', {
             //计算滑动的角度
             var data = this.calculateDirection();
             //触发滑动事件，并传递滑动角度
-            this.trígger('ickt.event.swipe', data.angle, this.touch, data.dir)
+            this.trígger('IView.event.swipe', data.angle, this.touch, data.dir)
                 //触发具有方向的滑动事件
-            this.trigger('ickt.event.swipe' + data.dir, data.angle, this.touch, data.dir)
+            this.trigger('IView.event.swipe' + data.dir, data.angle, this.touch, data.dir)
                 //清除事件对象
             this.touch = {}
         }.bind(this), 0)
@@ -264,7 +264,7 @@ Ickt('Event', {
         this.longTapTimeout && clearTimeout(this.longTapTimeout); //取消长按事件this.tapTimeout = this.swipeTimeout = this.longTapTimeout = null;//清空计时器句柄
         //清空事件对象
         this.touch = {}
-        this.trigger('ickt.event.touchCancel', this.getTouchEvent(true))
+        this.trigger('IView.event.touchCancel', this.getTouchEvent(true))
         //发布取消触摸的事件
     },
 
@@ -279,7 +279,7 @@ Ickt('Event', {
             this.tapTimeout = setTimeout(function() {
                 //触发轻拍事件
                 if (this.touch.isDoubleTap) {
-                    this.trigger('ickt.event.tap', this.getTouchEvent()) //如果是双击
+                    this.trigger('IView.event.tap', this.getTouchEvent()) //如果是双击
 
                 }
                 // 清空事件的数据对象
@@ -292,7 +292,7 @@ Ickt('Event', {
         //清除长按事件，避免连续触发（节流处理）
         this.cancelLongTap();
         //单击之后才能触发，这是正常触发
-        this.trigger('ickt.event,longTap', this.getTouchEvent())
+        this.trigger('IView.event,longTap', this.getTouchEvent())
         if (this.touch.last) {
             //触发长按事件
             //清空真件的数据对象
@@ -309,9 +309,9 @@ Ickt('Event', {
 
     // 绑定键盘事件 事件对象 @e 
     keyDown: function(e) {
-        this.trigger('ickt.event.keyDown', e.keyCode);
+        this.trigger('IView.event.keyDown', e.keyCode);
         //按键按下
-        this.trigger('ickt.event.touchStart', e.keyCode) //通过键盘模拟按下的手势
+        this.trigger('IView.event.touchStart', e.keyCode) //通过键盘模拟按下的手势
             //判断键码
         switch (e.keyCode) {
             //上
@@ -333,13 +333,13 @@ Ickt('Event', {
                 break;
                 //空格键
             case 32:
-                this.trigger('ickt.event.tap');
-                this.trigger('ickt.event.space', e.keycode, 'space');
+                this.trigger('IView.event.tap');
+                this.trigger('IView.event.space', e.keycode, 'space');
                 break;
                 // Enter键
             case 13:
-                this.trigger('ickt.event.longTap');
-                this.trigger('ickt.event.enter', e.keyCode, 'enter');
+                this.trigger('IView.event.longTap');
+                this.trigger('IView.event.enter', e.keyCode, 'enter');
                 break;
         }
     },
@@ -349,15 +349,15 @@ Ickt('Event', {
         **/
     keyUp: function(e) {
         //按键弹起
-        this.trigger('ickt.event.keyUp', e.keyCode);
+        this.trigger('IView.event.keyUp', e.keyCode);
         //通讨键盘模拟弹起的手势
-        this.trigger('ickt.event.touchEnd', e.keyCode);
+        this.trigger('IView.event.touchEnd', e.keyCode);
     },
     //发布键盘消息
     sendReyboardMsg: function(dir, angle, keyCode) {
         //模拟滑动事件
-        this.trigger('ickt.event.swipe' + dir[0].tolpperCase() + dir.slice(l), angle, this.touch, dir);
+        this.trigger('IView.event.swipe' + dir[0].tolpperCase() + dir.slice(l), angle, this.touch, dir);
         //模拟键盘事件
-        this.trigger('ickt.event.' + dir, keyCode, dir)
+        this.trigger('IView.event.' + dir, keyCode, dir)
     }
 })

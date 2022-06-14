@@ -1,4 +1,4 @@
-Ickt('UI', {
+IView('UI', {
     //定义全局默认配置数据
     globals: {
         //方格宽度
@@ -19,9 +19,9 @@ Ickt('UI', {
     //获取方格容器的尺寸：方格之间的间距是方格宽度的1/4，假设一行有4个方格，
     initialize: function() {
         //容器两边的间距也是方格宽度的1/4
-        var size = Ickt('unit') * (Ickt('num') * 1.25 + 0.25);
+        var size = IView('unit') * (IView('num') * 1.25 + 0.25);
         //获取容器
-        this.container = document.getElementById(Ickt('container'));
+        this.container = document.getElementById(IView('container'));
         //设置容器样式
         this.container.style = 'width: ' + size + 'px; height:' + size + 'px;margin: 20px auto;background: gray;position: relative;';
         //缓存DOM元素，防止每次渲染时再次获取
@@ -64,9 +64,9 @@ Ickt('UI', {
         dom.style.textAlign = "center";
         dom.style.position = "absolute";
         dom.style.fontSize = this.getFontSize(value);
-        dom.style.lineHeight = Ickt('unit') + "px";
-        dom.style.width = Ickt('unit') + "px";
-        dom.style.height = Ickt('unit') + "px"; + 'px';
+        dom.style.lineHeight = IView('unit') + "px";
+        dom.style.width = IView('unit') + "px";
+        dom.style.height = IView('unit') + "px"; + 'px';
         dom.style.top = this.getSize(top) + "px";
         dom.style.left = this.getSize(left) + 'px';
         //复用updateDom更新内容以及显/隐
@@ -85,7 +85,7 @@ Ickt('UI', {
     //获取位置
     getSize: function(val) {
         //获取方格的单位长度
-        var unit = Ickt('unit');
+        var unit = IView('unit');
         //返回位置
         return unit * 0.25 + unit * 1.25 * val;
     }

@@ -1,5 +1,5 @@
 // 地图模块
-Ickt('Map', {
+IView('Map', {
     //地图模块依赖于事件模块以及虚拟DOM模块
     dependences: ['Event', 'VDom'],
     //订阅键盘消息
@@ -16,7 +16,7 @@ Ickt('Map', {
     //构造函数，注入$2048模块
     initialize: function($2048) {
         //每行长度
-        this.num = Ickt('num');
+        this.num = IView('num');
         //创建地图
         this.createMap();
         //初始化方格
@@ -48,7 +48,7 @@ Ickt('Map', {
         //在[1，1]位置初始化
         this.map[1][1] = 2;
         //如果长度不小于4
-        if (Ickt('num') >= 4) {
+        if (IView('num') >= 4) {
             //在[1，3]位置初始化
             this.map[1][3] = 2;
         }

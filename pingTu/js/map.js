@@ -1,4 +1,4 @@
-Ickt('Map', {
+IView('Map', {
     dependences: ['VDom'],
     globals: {
         size: 3,
@@ -37,7 +37,7 @@ Ickt('Map', {
         }
     },
     initialize: function() {
-        this.size = Ickt('size');
+        this.size = IView('size');
         this.gameStart = false;
 
         this.initMap();

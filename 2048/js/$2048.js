@@ -1,4 +1,4 @@
-Ickt('$2048', function() {
+IView('$2048', function() {
     return {
         //检测是否有空位置
         checkNoPosition: function(map) {
@@ -131,7 +131,7 @@ Ickt('$2048', function() {
         **/
         sort: function(arr, leftToRight) {
             //创建结果数组（与原数组方格数相同）
-            var result = new Array(Ickt('num')).fill(0);
+            var result = new Array(IView('num')).fill(0);
             //从第一个成员开始遍历
             //如果由左向右滑动方格，应该从后向前遍历，所以要反转，等遍历完成后，再反转回来
             var i = 0;

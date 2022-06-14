@@ -1,5 +1,5 @@
 // 进度条模块
-Ickt('Process', 'Component', {
+IView('Process', 'Component', {
     message: {
         // 'player.game.update': 'gameUpdate'
     },
@@ -20,12 +20,11 @@ Ickt('Process', 'Component', {
     style: '../css/style.css',
     //构造函数，用于初始化进度条信息
     initialize: function() {
-        this.wholeTime = Ickt('time');
+        this.wholeTime = IView('time');
     },
     //更新游戏
     gameUpdate: function(loop, useTime) {
-        console.log(loop)
-            //如果用时超过了总时间
+        //如果用时超过了总时间
         if (useTime >= this.wholeTime) {
             //修改进度
             this.$value = '0%';

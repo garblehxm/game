@@ -1,5 +1,5 @@
 // 障碍汽车模块
-Ickt('Car', {
+IView('Car', {
     //全局信息
     globals: {
         //障碍汽车的数量
@@ -22,9 +22,9 @@ Ickt('Car', {
     // 构造函数
     initialize: function() {
         // 获取障碍汽车的数量
-        this.carNum = Ickt('carNum')
+        this.carNum = IView('carNum')
             // 获取障碍汽车的尺寸与速度等信息
-        this.carInfo = Ickt('carInfo');
+        this.carInfo = IView('carInfo');
         // 当前渲染的汽车
         this.cars = [];
         //汽车平均间距
@@ -33,7 +33,7 @@ Ickt('Car', {
     //模块加载完
     ready: function() {
         //获取游戏界面的高度
-        this.height = Ickt('height')
+        this.height = IView('height')
     },
     //游戏开始
     gameStart: function() {

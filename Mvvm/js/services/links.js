@@ -1,4 +1,4 @@
-Ickt('$links', function() {
+IView('$links', function() {
     return {
         //是否在一条横线上
         ABInX: function(a, b, oneLineNum) {
@@ -76,17 +76,7 @@ Ickt('$links', function() {
         },
 
         /**
-        *21
-        1
-        1
-        1 1
-        2 1
-        *011
-        1
-        12
-        02
-        *011110
-        *000000
+        *
         在纵向延长线上，隐藏水平方向上两个点之间的所有元素*
         */
         AxExtensionBx: function(a, b, oneLineNum, total, list) {
@@ -118,12 +108,7 @@ Ickt('$links', function() {
         },
 
         /**
-        ·200000
-        02
-        *111110
         在横向延长线上，隐藏垂直方向上两个点之间的所有元素
-        111110
-        *112000
         */
         AyExtensionBy: function(a, b, oneLineNum, list) {
             var isRight = false;
@@ -133,8 +118,8 @@ Ickt('$links', function() {
             //获取距离
             var distance = Math.max(aRow - bRow);
             //找出与a、b两点相邻并且在横向隐藏的节点
-            var AResult = this.forEachByStep(a, aRow * oneLineNum + oneLineNum, 1, false, list).concat(this.forEachBystep(a, aRow * oneLineNum, 1, true, list)).concat(a);
-            var BResult = this.forEachByStep(b, bRow * oneLineNum + oneLineNum, 1, false.list).concat(this.forEachByStep(b, bRow * oneLineNum, 1, true, list)).concat(b);
+            var AResult = this.forEachByStep(a, aRow * oneLineNum + oneLineNum, 1, false, list).concat(this.forEachByStep(a, aRow * oneLineNum, 1, true, list)).concat(a);
+            var BResult = this.forEachByStep(b, bRow * oneLineNum + oneLineNum, 1, false, list).concat(this.forEachByStep(b, bRow * oneLineNum, 1, true, list)).concat(b);
             //合并数组
             var result = AResult.concat(BResult);
             //分组，将求余后相等的两个数放在同一组中，作为对象的属性
@@ -173,7 +158,7 @@ Ickt('$links', function() {
                 //在遍历时，不能包含自身，因为自身已经显示
                 for (var i = start - step; i > end; i -= step) {
                     //如果该位置的图片被隐藏
-                    if (list[i].display === 'none') {
+                    if (i && list[i].display === 'none') {
                         //添加成员
                         result.push(i)
                     } else {

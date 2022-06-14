@@ -1,4 +1,4 @@
-Ickt('Player', {
+IView('Player', {
     message: {
         //玩家选中图片
         'player.choose': 'chooseImage',
@@ -66,9 +66,14 @@ Ickt('Player', {
         this.hasChoose = true;
     },
     ready: function() {
-        this.trigger('map.gameStart');
         this.trigger('game.start')
     },
-    gameSuccess: function() {},
+    gameOver: function() {
+        alert('游戏结束！');
+        this.trigger('game.start')
+    },
+    gameSuccess: function() {
+        alert('恭喜你通关了！');
+    },
 
 })

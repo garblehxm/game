@@ -1,5 +1,5 @@
 // UI组件
-Ickt('UI', 'Component', {
+IView('UI', 'Component', {
     //组件渲染的容器元素
     el: '#list',
     //样式

@@ -1,4 +1,4 @@
-Ickt('$gobang', function() {
+IView('$gobang', function() {
     //纵向检测五子相连
     return {
         checkCol: function(map) {

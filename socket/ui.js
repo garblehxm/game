@@ -1,4 +1,4 @@
-Ickt("UI", {
+IView("UI", {
     message: {
         "ui.showUserName": 'showUserName',
 

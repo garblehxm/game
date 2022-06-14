@@ -1,4 +1,4 @@
-Ickt('Process', {
+IView('Process', {
     globals: {
         //默认用时1min
         time: 1 * 60 * 1000
@@ -11,7 +11,7 @@ Ickt('Process', {
         //循环定时器的句柄
         this.timebar = null;
         //获取游戏约束时间
-        this.wholeTime = Ickt('time');
+        this.wholeTime = IView('time');
     },
     //模块加载完成，开始游戏，并开始计时
     ready: function() {

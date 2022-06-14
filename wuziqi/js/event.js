@@ -1,8 +1,8 @@
-Ickt('Event', {
+IView('Event', {
     //构造函数
     initialize: function() {
         //获取容器
-        this.container = document.querySelector(Ickt("container"));
+        this.container = document.querySelector(IView("container"));
         //获取棋盘在页面中的起始坐标
         //横坐标
         this.startX = this.getOffsetLeft(this.container);
@@ -13,9 +13,9 @@ Ickt('Event', {
         //棋盘高度
         this.height = this.container.clientHeight;
         //单元格宽度
-        this.cell = Ickt('cell')
-        //共20条线，从0开始计算，所以最后一条线的索引值是Ickt（'1ine'）-1
-        this.lineNum = Ickt('line') - 1;
+        this.cell = IView('cell')
+            //共20条线，从0开始计算，所以最后一条线的索引值是IView（'1ine'）-1
+        this.lineNum = IView('line') - 1;
     },
 
     //获取棋盘容器元素距离页面顶部的坐标

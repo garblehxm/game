@@ -1,4 +1,4 @@
-Ickt('Player', {
+IView('Player', {
     //全局配置
     globals: {
         //玩家汽车的纵坐标
@@ -14,7 +14,7 @@ Ickt('Player', {
         //默认在中间
         this.lane = 1;
         //获取用户赛车的纵坐标
-        this.y = Ickt('playerY');
+        this.y = IView('playerY');
         //定义用户赛车的高度
         this.height = 43;
     },

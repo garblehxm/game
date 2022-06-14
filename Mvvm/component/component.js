@@ -1,5 +1,5 @@
 //扩展组件类
-Ickt(Ickt, {
+IView(IView, {
     Component: {
         data: {},
         //默认容器元素
@@ -204,7 +204,7 @@ Ickt(Ickt, {
                 container.appendChild(this.$$dom.children[0])
             } else {
                 //如果容器元素不存在，提示用户
-                Ickt('请创建容器元素：，' + this.el)
+                IView('请创建容器元素：，' + this.el)
             }
         },
 
@@ -399,7 +399,7 @@ Ickt(Ickt, {
                         this.$watch(options.value, fn)
                     } else {
                         //指令不存在，提示用户
-                        Ickt.error(($1 || $2) + 'directive not find!');
+                        IView.error(($1 || $2) + 'directive not find!');
                     }
                 }
             }.bind(this))
@@ -408,7 +408,7 @@ Ickt(Ickt, {
         //添加指令
         directive: function(obj) {
             //将指令添加到指令池中
-            Ickt(this.$$directives, obj)
+            IView(this.$$directives, obj)
         },
 
         /** 插值指令
@@ -509,7 +509,7 @@ Ickt(Ickt, {
 
         //销毁组件
         $$destory: function() {
-            //使用Ickt模块基类的destory方法销毁组件this.destory();
+            //使用IView模块基类的destory方法销毁组件this.destory();
             //从容器元素中删除该组件根元素
             this.$$dom.parentNode.removeChild(this.$$dom)
         }

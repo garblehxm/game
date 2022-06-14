@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     var root = this;
-    var Ickt = function(key) {
+    var IView = function(key) {
         //获取参数长度
         var len = arguments.length;
         //如果只有一个参数
@@ -9,17 +9,17 @@
         if (len === 1) {
             //检测是否存在字段信息，若不存在抛出错误
             if (typeof key === 'string') {
-                if (Ickt.Conf[key] === undefined) {
-                    Ickt.error('全局中尚未配置' + key + '字段信息');
+                if (IView.Conf[key] === undefined) {
+                    IView.error('全局中尚未配置' + key + '字段信息');
                 }
                 //返回全局配置
-                return Ickt.Conf[key]
+                return IView.Conf[key]
                     // } else if (typeof key ==='function') {
                     // root.onload = key.bind(this)
                     // }
                     // 否则存储全局配置
             } else {
-                key && Ickt(Ickt.Conf, key)
+                key && IView(IView.Conf, key)
             }
             //参数长度大于1
         } else if (len > 1) {
@@ -27,39 +27,39 @@
             if (typeof key === 'string') {
                 // 如果第二个参数是函数
                 if (typeof arguments[1] === 'function') {
-                    Ickt.Service[arguments[0]] = arguments[1]() // 表示自定义服务
+                    IView.Service[arguments[0]] = arguments[1]() // 表示自定义服务
                 } else {
-                    Ickt.module.apply(Ickt, Array.prototype.map.call(arguments,
+                    IView.module.apply(IView, Array.prototype.map.call(arguments,
                             // 否则，通过module定义模块
                             //从第二个开始，如果参数是字符串，表示模块要继承的扩展类
                             function(obj, index) {
                                 if (index && typeof obj === 'string') {
-                                    //扩展类存储在Ickt中
-                                    return Ickt[obj]
+                                    //扩展类存储在IView中
+                                    return IView[obj]
                                 }
                                 //返回参数对象
                                 return obj
                             }))
-                        // Ickt.module.apply(Ickt, arguments);
+                        // IView.module.apply(IView, arguments);
                 }
             } else {
                 //从第二个参数开始，将每个对象中的属性方法复制到第一个对象中
                 return Object.assign.apply(this, arguments)
             }
         } else {
-            Ickt.ready();
+            IView.ready();
         }
-        return Ickt;
+        return IView;
     }
     if (typeof Moudle !== 'undefined') {
-        module.exports = Ickt;
+        module.exports = IView;
     } else {
-        root.Ickt = Ickt;
+        root.IView = IView;
     }
 }.call(this));
 
-//为Ickt扩展观察者对象（消息系统）
-Ickt(Ickt, {
+//为IView扩展观察者对象（消息系统）
+IView(IView, {
     //定义观察者对象，为了将消息管道私有化，把它放在一个闭包中
     EventCenter: function() {
         //定义消息管道，将消息私有化
@@ -130,7 +130,7 @@ Ickt(Ickt, {
             //发布消息的方法
             trigger: function(type) {
                 //我们认为第一个参数是消息类型，从第二个参效
-                var arg = Ickt.slice.call(arguments, 1);
+                var arg = IView.slice.call(arguments, 1);
 
                 // 定义返回的结果
                 var result = [];
@@ -145,7 +145,7 @@ Ickt(Ickt, {
                         })
                         //提示用户，该消息没有注册
                 } else {
-                    Ickt.warn(type + ' message not defined!')
+                    IView.warn(type + ' message not defined!')
                         //返回null
                     return null;
                 }
@@ -189,10 +189,10 @@ Ickt(Ickt, {
     }()
 })
 
-// 扩展ickt
-//为了方便开发，这里为Ickt对象复制一些常用方法
+// 扩展IView
+//为了方便开发，这里为IView对象复制一些常用方法
 //扩展一些常用方法
-Ickt(Ickt, {
+IView(IView, {
     //复制截取数组的方法
     slice: [].slice,
     //复制删除并插入新成员的方法
@@ -203,12 +203,12 @@ Ickt(Ickt, {
     //为了方便提示程序运行时的一些问题，我们将提示信息格式化，并封装成方法
     info: function(msg) {
         //console存在，通知用户
-        console && console.log('(Ickt Info]:' + msg);
+        console && console.log('(IView Info]:' + msg);
     },
     //警告
     warn: function(msg) {
         //console存在,警告用户
-        console && console.warn('[Ickt Warn]:++' + msg);
+        console && console.warn('[IView Warn]:++' + msg);
     },
     //轻微的错误提示（例如，模块类名需要大写）对程序规苑等有影响，但是程序仍正常运行
     error: function(msg) {
@@ -218,31 +218,31 @@ Ickt(Ickt, {
     //产重的错误提示，例如，死循环、堆栈溢出等
     seriousError: function(msg) {
         //抛出错误，终止执行
-        new Error('[Ickt Serious Error):' + msg)
+        new Error('[IView Serious Error):' + msg)
     }
 })
 
 // 于是小铭在后面加了一行程序。
-//为方便订阅发布消息，将EventCenter中的方法复制到Ickt对象中
-Ickt(Ickt, Ickt.EventCenter);
+//为方便订阅发布消息，将EventCenter中的方法复制到IView对象中
+IView(IView, IView.EventCenter);
 // 兴奋之余，小白写下了测试用例。
 //定义回调函数
 // function demo(msg) {
 //     console.log(msg)
 // }
 //订阅消息
-// Ickt.on('hello', demo)
+// IView.on('hello', demo)
 //注销消息
-// Ickt.remove('hello', demo)
+// IView.remove('hello', demo)
 //发布消息
-// Ickt.trigger('hello', '雨夜清荷')
+// IView.trigger('hello', '雨夜清荷')
 
 
 
 //模块base
 //名开始定义模块基类，程序如下。
-//为Ickt扩展Base基类模块
-Ickt(Ickt, {
+//为IView扩展Base基类模块
+IView(IView, {
     //全局配置
     Conf: {},
     /**
@@ -254,7 +254,7 @@ Ickt(Ickt, {
     },
     propertiesExtend: function(target) {
         //获取扩展对象（从第二个参数开始）
-        var args = Ickt.slice.call(arguments, 1);
+        var args = IView.slice.call(arguments, 1);
         //判断是否设置了特性
         var ipo = this.isPropertyObject;
         //遍历扩展对象，每个成员代表一个扩展对象
@@ -300,7 +300,7 @@ Ickt(Ickt, {
     //一切模块以及组件的基类
     Base: function() {
         //解析模块的消息序列，并注册已有的消息
-        Ickt.messageSerialization.call(this);
+        IView.messageSerialization.call(this);
         console.log(this)
             //为了扩展模块，我们在这里将执行模块预留的钩子函数
         this._hookCallbacks.forEach(function(fn) {
@@ -311,13 +311,13 @@ Ickt(Ickt, {
             //完整的生命周期方法将在后面给出
             // this.initialize.apply(this, arguments)
             //解析initialize构造函数的参数集合，并传递模块实例化对象
-        var args = Ickt.paramInjectAnalysis(this.initialize, this)
+        var args = IView.paramInjectAnalysis(this.initialize, this)
         this.initialize.apply(this, args)
     },
     //解析模块的消息序列并注册消息，后面会根据消息的存储方式实现该方法
-    //为Ickt扩展Base基类模块
+    //为IView扩展Base基类模块
     messageSerialization: function() {
-        var msg = Ickt({}, this.__message__, this.message);
+        var msg = IView({}, this.__message__, this.message);
         //将两类模块消息复制到一个对象中
         //遍历该消息对象
         //逐一注册，并传递回调函数执行时的作用域
@@ -359,11 +359,11 @@ Ickt(Ickt, {
                 //去除首尾空白符
                 var name = str.trim();
                 //在服务池中查找该服务
-                var result = Ickt.Service[name]
+                var result = IView.Service[name]
                     //判断服务是否存在
                 if (!result) {
                     //若不存在，提示错误
-                    Ickt.error(name + ' service not found!')
+                    IView.error(name + ' service not found!')
                 } else {
                     //若服务存在，将服务存储在模块自身中
                     module[name] = result;
@@ -380,20 +380,20 @@ Ickt(Ickt, {
      * hookName 生命周期钩子函数的名称
      */
     registGlobalMessage: function(messageName, hookName) {
-        var wholeMessageName = 'ickt.' + messageName;
+        var wholeMessageName = 'IView.' + messageName;
         //添加全局消息前级
-        if (Ickt.Base.prototype.__message__[wholeMessageName]) {
+        if (IView.Base.prototype.__message__[wholeMessageName]) {
             //判断该消息是否已经存在
-            Ickt.error(messageName + '已经被注册，请更换消息名称')
+            IView.error(messageName + '已经被注册，请更换消息名称')
                 //消息已经存在，提示用户
                 //如果没有传递回调函数的名称，则将messageName转化成驼峰式，作为回调函数的名称
             hookName = hookName || messageName.replace(/\.([a-z])?/g, function(match, $1) {
                     return $1 ? $1.toUpperCase() : ''
                 })
                 //回调函数的名称
-            Ickt.Base.prototype.__message__[wholeMessageName] = hookName;
+            IView.Base.prototype.__message__[wholeMessageName] = hookName;
             //定义回调函数的默认值
-            Object.defineProperty(Ickt.Base.prototype, hookName, {
+            Object.defineProperty(IView.Base.prototype, hookName, {
                 //设置特性
                 configurable: false,
                 writable: true,
@@ -408,12 +408,12 @@ Ickt(Ickt, {
         // 模块名称首字母必须大写
         if (!/[A-Z]/.test(name[0])) {
             //如果首字母没有大写，不符合规范，提示错误
-            Ickt.error(name + '模块名称首字母大写')
+            IView.error(name + '模块名称首字母大写')
         }
         // 判断是否已经创建了该模块
-        if (Ickt.ModuleClass[name]) {
+        if (IView.ModuleClass[name]) {
             //如果创建了该模块，不能重复创建
-            Ickt.error(name + '模块已经安装')
+            IView.error(name + '模块已经安装')
         }
         //模块类要继承模块基类，基类就是Base类
         var Parent = this.Base;
@@ -466,12 +466,12 @@ Ickt(Ickt, {
             // setPrototypeOf代替）
         Object.setPrototypeOf ? Object.setPrototypeOf(Module, Parent) : (Module.__proto__ = Parent);
         //定义全局配置
-        protos.globals && Ickt(protos.globals);
+        protos.globals && IView(protos.globals);
         Module.dependencies = protos.dependencies;
         //模块即将安装，执行模块生命周期第一个阶段的方法
         protos.beforeInstall.call(Module, Module);
         //安装模块
-        Ickt.ModuleClass[name] = Module;
+        IView.ModuleClass[name] = Module;
         //将模块插入模块安装集合中
         this.installModule.push(name)
             // console.log(args, protos)
@@ -480,7 +480,7 @@ Ickt(Ickt, {
     },
     destory: function(instance) {
         // 将两类消息复制到一个新对象中
-        var msg = Ickt({}, instance.__message__, instance.message);
+        var msg = IView({}, instance.__message__, instance.message);
         //遍历该消息对象
         // key 表示消息名称， msg [key] 表示回调函数名称，通过instance 才能访问对应的函数
         for (var key in msg) {
@@ -504,11 +504,11 @@ Ickt(Ickt, {
                     return;
                 }
                 // 如果在所有模块集合中存在该模块名称
-                if (Ickt.ModuleClass[moduleName]) {
+                if (IView.ModuleClass[moduleName]) {
                     // 存储该模块名称及其依赖的模块集合
                     modules.push({
                         name: moduleName,
-                        deps: Ickt.ModuleClass[moduleName].dependencies
+                        deps: IView.ModuleClass[moduleName].dependencies
                     })
                 }
                 // this.create(module);
@@ -523,7 +523,7 @@ Ickt(Ickt, {
                 this.create(module)
             }.bind(this))
             //所有组件安装完成，进入生命周期的第五个阶段
-        this.EventCenter.trigger('ickt.ready');
+        this.EventCenter.trigger('IView.ready');
         //返回this，方便链式调用
         return this;
     },
@@ -539,12 +539,12 @@ Ickt(Ickt, {
         //获取模块实例化时传递的参数
         var arg = this.slice.call(arguments, 1);
         //实例化模块，并在实例化过程中传递参数
-        var instance = new(Function.prototype.bind.apply(Ickt.ModuleClass[module], [null].concat(arg)))
+        var instance = new(Function.prototype.bind.apply(IView.ModuleClass[module], [null].concat(arg)))
             //在ECMAScript 6中，可以通过Reflect实现
-            // var instance = Reflect.construct(Ickt.ModuleClass[module],
+            // var instance = Reflect.construct(IView.ModuleClass[module],
             /**也可以直接通过bind绑定作用域，但是用户重写模块的bind方法是很危险的，
             所以我们选择前面那种借用函数原型的bind方法**/
-            // var instance = new (Ickt.ModuleClass[module].bind(Ickt.ModuleClass[moaure], arg))
+            // var instance = new (IView.ModuleClass[module].bind(IView.ModuleClass[moaure], arg))
             //安装这个模块
         this.install(module, instance)
             //返回该实例化对身
@@ -644,7 +644,7 @@ Ickt(Ickt, {
                 //如果有双向依赖的模块
             if (errorArr.length) {
                 // 提示用户，错误很严重，相互依赖的模块可能无法运行
-                Ickt.seriousError('模块禁止双向依赖！' + errorArr.join(' | '))
+                IView.seriousError('模块禁止双向依赖！' + errorArr.join(' | '))
             } else {
                 //对于没有双向依赖的模块，可能依赖的模块不存在，提示用户定义不存在的模块，以及错误
                 //所在模块的位音y天，肥K）
@@ -654,7 +654,7 @@ Ickt(Ickt, {
                     //如果被依赖的模块不在未排序的模块由小
                     if (modules.indexof(arr[0]) < 0) {
                         //提示用户，定义模块
-                        Ickt.seriousError(arr[1] + '模块中依赖的模块，' + arr[0] + '，尚未定义！请定义，' + arr[0] + ',模块')
+                        IView.seriousError(arr[1] + '模块中依赖的模块，' + arr[0] + '，尚未定义！请定义，' + arr[0] + ',模块')
                     }
                 })
             }
@@ -700,10 +700,10 @@ Ickt(Ickt, {
 
 //我们希望Base基类的属性具有特性，所以定义propertiesExtend的方法
 //工具方法：我们简单地认为，设置属性对象至少包含两个属性
-Ickt.propertiesExtend(Ickt.Base.prototype,
+IView.propertiesExtend(IView.Base.prototype,
     //一类消息是在创建时自动绑定的，定义在__message___中，通常是系统消息
     //为基类扩展消息系统
-    Ickt.EventCenter, {
+    IView.EventCenter, {
         //损块消息分成两类
         //创建所有模块之后，发布的一个系统消息ready
         //膚性值value表示回调函数名称，要在组件中定义
@@ -711,7 +711,7 @@ Ickt.propertiesExtend(Ickt.Base.prototype,
             //属性名称key表示消息名称
             //理论上，每一个模块都可能被扩展，都应该定义默认的_hooks方法，在后面的章节中，为了避免执行
             //另一类消息是在各自的横块中单独定义的，定义在message中
-            'ickt.ready': 'ready'
+            'IView.ready': 'ready'
         },
         message: {},
         //内容的_hooks，我们放弃定义默认的_hooks方法
@@ -741,7 +741,7 @@ Ickt.propertiesExtend(Ickt.Base.prototype,
                 //获取类的静态属性
                 return this.constructor[key]
                     //如果value不存在，并且key是对象，则设置类的多个静态属性
-            } else if (Ickt.toString.call(key) === "[object Object]") {
+            } else if (IView.toString.call(key) === "[object Object]") {
                 //遍历这些静态属性
                 for (var i in key) {
                     //逐一设置
@@ -754,6 +754,6 @@ Ickt.propertiesExtend(Ickt.Base.prototype,
             //执行模块的最后一个生命周期钩子方法
             this.beforeDestory();
             //注销该实例化对象注册的所有消息
-            Ickt.destory(this);
+            IView.destory(this);
         }
     })

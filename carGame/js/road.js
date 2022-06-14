@@ -1,4 +1,4 @@
-Ickt('Road', {
+IView('Road', {
     message: {
         // 'road.update': 'gameUpdate',
         //检测是否轧过减速带
@@ -25,7 +25,7 @@ Ickt('Road', {
     // 模块加载完
     ready: function() {
         //获取高度
-        this.height = Ickt('height');
+        this.height = IView('height');
     },
     //游戏更新
     gameUpdate: function() {
