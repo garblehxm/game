@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1,user-scalable=1, width=device-width">
+    <meta charset=" UTF-8 ">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>五子棋游戏</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script type="text/javascript" src="../lib/IView.js"></script>
+    <script type="text/javascript" src="js/services/$gobang.js"></script>
+    <script type="text/javascript" src="js/map.js"></script>
+    <script type="text/Javascript" src="js/ui.js"></script>
+    <script type="text/javascript" src="js/event.js"></script>
+    <script type="text/javascript" src="js/player.js"></script>
+    <script type="text/javascript" src="js/socket.js"></script>
+    <!-- <script type="text/javascript" src="socket.io/socket.io.js"></script> -->
+    <script type="text/javascript">
+        IView({
+            line: 20,
+            cell: 15,
+            container: "#app"
+        })();
+    </script>
+</body>
+
+</html>
