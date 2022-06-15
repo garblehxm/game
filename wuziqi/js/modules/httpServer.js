@@ -114,7 +114,7 @@ module.exports = HttpServer;
 
 
 
-// ‘ 子民’ 之间可以直接通信。 但是需要注意的是， No 小铭在控制台中输入npm install socket.io指令（ 见图3 - 3）， 顺利安装socket.io模块。 在 要安装一个socket.io模块。” 小铭说。 socketServer,
+// ‘ 子民’ 之间可以直接通信。 但是需要注意的是， No 小铭在控制台中输入npm install socket.io指令， 顺利安装socket.io模块。 在 要安装一个socket.io模块。” 小铭说。 socketServer,
 // js文件中写了几行代码， 创建了HTTP 服务器实例， 并启动它。 最后引入了Socket协议并将结果作为接口暴露出来。 bogon: ~yyqh$ npm install socket.io 图3 - 3 安装socket.io模块
 //获取 HTTP服务器类
 //获取socket.io模块，注意，该模块需要安装
